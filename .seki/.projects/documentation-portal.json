@@ -1,0 +1,28 @@
+{
+  "name": "documentation-portal",
+  "description": "Documentation Portal for IAM",
+  "settings": {
+    "secured": true,
+    "stages": {
+      "staging": {
+        "replicas": 1
+      },
+      "production": {
+        "replicas": 3
+      }
+    }
+  },
+  "$schema": "https://api.cencosudx.xyz/seki/statics/proxy/Cencosud-xlabs/seki-project-templates/main/documentation-portal/schema.json",
+  "group_folder": "apps",
+  "path": "documentation-portal",
+  "kind": "web",
+  "definition": {
+    "name": "Documentation Portal",
+    "icons": {
+      "light": "icons/icon.svg",
+      "dark": "icons/icon.svg"
+    },
+    "url": "https://github.com/Cencosud-xlabs/seki-project-templates.git"
+  },
+  "alias": "Documentation Portal"
+}

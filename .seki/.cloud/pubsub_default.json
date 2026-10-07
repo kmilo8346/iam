@@ -1,0 +1,25 @@
+{
+  "kind": "pubsub",
+  "identifier": "default",
+  "properties": {
+    "topics": [
+      {
+        "name": "gl.iam.authentications.failed.v1"
+      },
+      {
+        "name": "gl.iam.authentications.successful.v1"
+      }
+    ]
+  },
+  "$schema": "https://api.cencosudx.xyz/seki/statics/proxy/Cencosud-xlabs/seki-cloud-components/main/pubsub/schema.json",
+  "definition": {
+    "icons": {
+      "light": "icons/icon-white.svg",
+      "dark": "icons/icon.svg"
+    },
+    "name": "PubSub",
+    "short_description": "Cola de mensajes",
+    "url": "https://api.cencosudx.xyz/seki/statics/proxy/Cencosud-xlabs/seki-cloud-components/main/pubsub"
+  },
+  "output": "settings.json"
+}

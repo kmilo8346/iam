@@ -1,0 +1,30 @@
+{
+  "folders": [
+    {
+      "name": "🗼 Api",
+      "path": "./apps/api/src"
+    },
+    {
+      "name": "📖 Docs",
+      "path": "./apps/documentation-portal/src/docs"
+    },
+    {
+      "name": "🧰 Core",
+      "path": "./libs/core/src"
+    },
+    {
+      "name": "📦 Models",
+      "path": "./libs/models/src"
+    },
+    {
+      "name": "Monorepo",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "eslint.format.enable": true,
+    "terminal.integrated.cwd": "${workspaceFolder:Monorepo}"
+  }
+}
+
+

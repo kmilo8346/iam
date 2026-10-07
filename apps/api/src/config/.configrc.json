@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/secrets/configrc.schema.json",
+  "secrets": {
+    "includes": [
+      "PRODUCT_NAME",
+      "API_SERVER_PORT",
+      "API_SIGNATURE_SECRET",
+      "PROVIDER_GOOGLE_GMAIL_CLIENT_ID",
+      "PROVIDER_GOOGLE_GMAIL_CLIENT_SECRET",
+      "PROVIDER_MICROSOFT_SAML_CLIENT_ID",
+      "PROVIDER_GITHUB_LOGIN_CLIENT_ID",
+      "PROVIDER_GITHUB_LOGIN_CLIENT_SECRET"
+    ]
+  },
+  "files": {
+    "includes": [
+      "private_key.pem",
+      "public_key.pub",
+
+      "provider_microsoft_certificate.cer",
+      "provider_microsoft_private_key.pem",
+      "provider_microsoft_saml.xml"
+    ]
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "dependsOn": [
+        {
+          "target": "secrets",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "release",
+      "options": {
+        "outputPath": "dist/apps/api",
+        "main": "apps/api/src/main.ts",
+        "tsConfig": "apps/api/tsconfig.app.json",
+        "assets": ["apps/api/src/config", "apps/api/src/assets"],
+        "webpackConfig": ["apps/api/webpack.js"]
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true,
+          "inspect": true
+        },
+        "release": {
+          "optimization": true,
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true,
+          "inspect": false
+        }
+      }
+    },
+    "serve": {
+      "dependsOn": [
+        {
+          "target": "secrets",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nrwl/node:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "api:build:development"
+        },
+        "release": {
+          "buildTarget": "api:build:release",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "dependsOn": [
+        {
+          "target": "secrets",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/api/**/*.ts"]
+      }
+    },
+    "test": {
+      "dependsOn": [
+        {
+          "target": "secrets",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/api"],
+      "options": {
+        "jestConfig": "apps/api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "seki secrets generate -p=api",
+        "cwd": "."
+      }
+    },
+    "environment": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose -f ./dev/docker-compose.yaml up",
+        "cwd": "./apps/api/src"
+      }
+    }
+  },
+  "tags": ["REQUIRED:GOLDEN"]
+}

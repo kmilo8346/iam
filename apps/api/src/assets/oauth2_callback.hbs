@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <title></title>
+</head>
+
+<body>
+  <br />
+  <br />
+  <br />
+  <center>
+    <br />
+    <br />
+    <div class="loading-fab" style="margin-bottom:6px">
+      <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling">
+        <circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}"
+          ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="#03a9f4" stroke-width="4" r="35" stroke-dasharray="164.93361431346415 56.97787143782138"
+          transform="rotate(310 50 50)">
+          <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1.8s"
+            begin="0s" repeatCount="indefinite"></animateTransform>
+        </circle>
+      </svg>
+    </div>
+    <span style="opacity:0.35; font-family:arial; font-size:0.95em">
+      Redireccionando a la aplicación...
+      <br />
+      <span style="font-size:0.7em">
+        (espera un momento por favor)
+      </span>
+    </span>
+  </center>
+
+  <script type="text/javascript">
+    var qs = window.location.href;
+    var parent = (window.opener || window.top);
+    var target = this;
+    var parseFragment = function (uri) {
+      var params = uri.substring(uri.indexOf("#access_token") + 1).split("&");
+      var j = {
+        origin: window.location.origin
+      };
+
+      for (var idx in params) {
+        var fullParam = params[idx];
+        var name = fullParam.split('=')[0];
+        var value = fullParam.substring(fullParam.indexOf('=') + 1);
+        j[name] = (name === "expires_in" ? parseInt(value) : value);
+      }
+      return j;
+    }
+
+    parent.postMessage(parseFragment(qs), "*");
+
+    var preventDefault = true;
+    window.addEventListener("message", function (e) {
+      switch (e.data.type) {
+        case "command":
+          switch (e.data.value) {
+            case "close":
+              preventDefault = false;
+              target.close(); // now!
+              break;
+            case "void":
+              preventDefault = true;
+              break;
+          }
+          break;
+      }
+    });
+
+    setTimeout(function () {
+      if (!preventDefault) {
+        target.close();
+      }
+    }, 80);
+
+
+  </script>
+</body>
+
+</html>

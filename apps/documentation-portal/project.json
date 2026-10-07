@@ -1,0 +1,49 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/documentation-portal/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "outputPath": "dist/apps/documentation-portal",
+        "commands": [
+          "npx docusaurus build apps/documentation-portal",
+          "mkdir -p dist/apps/",
+          "mv apps/documentation-portal/build dist/apps/documentation-portal"
+        ],
+        "parallel": false,
+        "cwd": "."
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx docusaurus start apps/documentation-portal",
+        "cwd": "."
+      }
+    },
+    "clear": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx docusaurus clear apps/documentation-portal",
+        "cwd": "."
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/documentation-portal/**/*.ts"]
+      }
+    },
+    "secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "seki secrets generate -p=documentation-portal",
+        "cwd": "."
+      }
+    }
+  },
+  "tags": ["REQUIRED:GOLDEN"]
+}

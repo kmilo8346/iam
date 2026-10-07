@@ -1,0 +1,7 @@
+{
+  "name": "iam",
+  "display_name": "Identity & Authorization Management",
+  "description": "Identity And Authorization Management Platform",
+  "$schema": "https://api.cencosudx.xyz/seki/statics/proxy/Cencosud-xlabs/seki-schemas/main/v1/sekirc.schema.json",
+  "version": 4
+}

@@ -1,0 +1,22 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+  redis:
+    image: redis:7.0.5
+    ports:
+      - '6379:6379'
+  pubsub:
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:455.0.0-emulators
+    entrypoint:
+      - gcloud
+      - beta
+      - emulators
+      - pubsub
+      - start
+      - '--project=cencosudx'
+      - '--host-port=0.0.0.0:8085'
+    ports:
+      - '8085:8085'
